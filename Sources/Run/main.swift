@@ -22,4 +22,33 @@ try config.setup()
 let drop = try Droplet(config)
 try drop.setup()
 
+drop.get("hi"){request in
+    return "hellojsdbc"
+}
+
+
+drop.get("hi/greetings") { req in
+
+    let name = req.data["name"]?.string ?? ", what's your name? :D"
+    return "Hello \(name)"
+
+    //            var json = JSON()
+    //            try json.set("hello", "world")
+    //            return json
+}
+
+
+drop.get("/name",":name") { request in
+    if let name = request.parameters["name"]?.string {
+        return "Hello \(name)!"
+    }
+    return "Error retrieving parameters."
+}
+
+drop.get("cat") { request in
+    return Response(redirect: "https://www.google.co.in/search?q=cat&oq=cat+&aqs=chrome..69i57j69i60l2j69i65j69i60j69i61.843j0j7&sourceid=chrome&ie=UTF-8")
+}
+
+
+
 try drop.run()

@@ -1,5 +1,7 @@
 import Vapor
 
+
+
 extension Droplet {
     func setupRoutes() throws {
         get("hello") { req in
@@ -8,6 +10,8 @@ extension Droplet {
             return json
         }
 
+    
+        
         get("plaintext") { req in
             return "Hello, world!"
         }
