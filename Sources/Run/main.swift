@@ -45,8 +45,26 @@ drop.get("/name",":name") { request in
     return "Error retrieving parameters."
 }
 
+
+drop.post("userVerification"){ request in
+       let  name = request.data["name"]?.string
+      let  pass = request.data["pass"]?.string
+    
+    if name == pass{
+    var json = JSON()
+        try json.set("Username"," \(name!)")
+        try json.set("password"," \(pass!)")
+          try json.set("Message","Success")
+    return json
+    }else{
+        var json = JSON()
+    try json.set("Message","Unsuccesfull")
+            return json
+    }
+}
+
 drop.get("cat") { request in
-    return Response(redirect: "https://www.google.co.in/search?q=cat&oq=cat+&aqs=chrome..69i57j69i60l2j69i65j69i60j69i61.843j0j7&sourceid=chrome&ie=UTF-8")
+    return Response(redirect: "https://www.google.co.in/search?biw=1895&bih=847&tbm=isch&sa=1&q=black+cat&oq=black+cat&gs_l=psy-ab.3..0i67k1l2j0j0i67k1.7338.10150.0.10913.6.6.0.0.0.0.174.651.4j2.6.0....0...1.1.64.psy-ab..0.6.650...0i7i30k1j0i13k1j0i10k1.0.UU9Hnzc9vb0")
 }
 
 
